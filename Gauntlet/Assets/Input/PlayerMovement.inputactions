@@ -1,5 +1,5 @@
 {
-    "name": "Player1",
+    "name": "PlayerMovement",
     "maps": [
         {
             "name": "Player1Move",
@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "KeyBoard",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "ad8b1cbe-f0bc-4803-898a-0b99ed4d9507",
                     "expectedControlType": "Key",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Controller",
@@ -24,7 +24,19 @@
                     "initialStateCheck": false
                 }
             ],
-            "bindings": []
+            "bindings": [
+                {
+                    "name": "Two Modifiers",
+                    "id": "03871ba7-70b4-40e6-b136-e87c5744ae2c",
+                    "path": "TwoModifiers",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyBoard",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
