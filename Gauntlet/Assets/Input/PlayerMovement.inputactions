@@ -1,0 +1,31 @@
+{
+    "name": "Player1",
+    "maps": [
+        {
+            "name": "Player1Move",
+            "id": "e3819a51-76c4-4ba0-bb11-401314668157",
+            "actions": [
+                {
+                    "name": "KeyBoard",
+                    "type": "PassThrough",
+                    "id": "ad8b1cbe-f0bc-4803-898a-0b99ed4d9507",
+                    "expectedControlType": "Key",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Controller",
+                    "type": "Button",
+                    "id": "58ac92c9-5ae9-4421-abe7-6acf8f1eb017",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": []
+        }
+    ],
+    "controlSchemes": []
+}
