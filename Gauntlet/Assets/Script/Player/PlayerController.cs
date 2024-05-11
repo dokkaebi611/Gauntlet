@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public int healthDecreaseRate = 1;
     public int healthDecreaseInterval = 1; // 1 second
     public int keys = 0; // Number of keys player has
+    public int score = 0; // Player's score
 
     private Vector2 move;
     private float nextFireTime = 0f;
@@ -132,7 +133,9 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("Treasure"))
         {
-            // Handle treasure interaction
+            score += 100; // Increase score by 100
+            Destroy(other.gameObject);
+            Debug.Log("Treasure collected! Score: " + score);
         }
         if (other.CompareTag("Key"))
         {
@@ -155,7 +158,6 @@ public class PlayerController : MonoBehaviour
             else
             {
                 Debug.Log("You need a key to open this door.");
-                // Additional feedback or blocking movement can be added here
             }
         }
     }
