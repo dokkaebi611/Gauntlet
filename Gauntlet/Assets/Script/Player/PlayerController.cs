@@ -169,12 +169,29 @@ public class PlayerController : MonoBehaviour
     {
         if (magicPotionCount > 0)
         {
-            GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject Enemy in enemy)
+            // Define the range dimensions
+            float rangeX = 40f;
+            float rangeY = 2f;
+            float rangeZ = 40f;
+
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            Vector3 playerPosition = transform.position;
+
+            foreach (GameObject enemy in enemies)
             {
-                Destroy(Enemy);
+                Vector3 enemyPosition = enemy.transform.position;
+                float distanceX = Mathf.Abs(enemyPosition.x - playerPosition.x);
+                float distanceY = Mathf.Abs(enemyPosition.y - playerPosition.y);
+                float distanceZ = Mathf.Abs(enemyPosition.z - playerPosition.z);
+
+                // Check if the enemy is within the specified range
+                if (distanceX <= rangeX && distanceY <= rangeY && distanceZ <= rangeZ)
+                {
+                    Destroy(enemy);
+                }
             }
-            Debug.Log("All enemies on the screen have been destroyed by the Magic Potion!");
+
+            Debug.Log("Magic Potion used. Destroyed enemies within range: " + rangeX + "x" + rangeY + "x" + rangeZ);
         }
     }
 
