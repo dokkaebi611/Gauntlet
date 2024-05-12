@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
-public class Food : MonoBehaviour
+[CreateAssetMenu(fileName = "NewFood", menuName = "Inventory/Food")]
+public class Food : Item
 {
-    public int healthRecoveryAmount = 100;
+    public int healthRecoveryAmount;
 }

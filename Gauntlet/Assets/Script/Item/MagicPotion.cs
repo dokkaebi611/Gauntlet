@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicPotion : MonoBehaviour
+[CreateAssetMenu(fileName = "NewMagicPotion", menuName = "Inventory/MagicPotion")]
+public class MagicPotion : Item
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Define specific properties for MagicPotion
 }

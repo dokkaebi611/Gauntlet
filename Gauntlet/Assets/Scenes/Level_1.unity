@@ -225,6 +225,78 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &94332210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 94332211}
+  - component: {fileID: 94332212}
+  m_Layer: 0
+  m_Name: MagicPotionRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &94332211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94332210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 40, y: 2, z: 40}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 588825733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &94332212
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94332210}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &209967560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8342328696924765711, guid: 562715b30f823704890c44eaa9fc6d2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4698612130758148547}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &209967566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209967560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d4fd1485a1e9a41beea794c0046a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 2c2ba54a3942f054c933f5af758c25a5, type: 2}
 --- !u!1 &235970389
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +504,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &415802614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3054348667310059897, guid: a02162f430019ae47809236b491547ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1600475535}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &415802618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415802614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d4fd1485a1e9a41beea794c0046a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 050545803da5b314b97b9572fde1a3ac, type: 2}
 --- !u!1 &588825728
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +633,7 @@ Transform:
   m_Children:
   - {fileID: 1652004031}
   - {fileID: 2092981544}
+  - {fileID: 94332211}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &588825734
@@ -566,8 +658,8 @@ MonoBehaviour:
   health: 0
   healthDecreaseRate: 1
   healthDecreaseInterval: 1
-  keys: 0
   score: 0
+  magicPotionCount: 0
 --- !u!114 &588825735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +735,19 @@ MonoBehaviour:
     m_ActionId: 20fa8675-0de7-4fa7-94f6-8d8550ff3d63
     m_ActionName: Player2/Attack[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 588825734}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnUseMagicPotion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0990274e-2ff0-4f52-a6b7-68ba20a768b7
     m_ActionName: Player_1_Left/Potion[/Keyboard/leftShift]
   - m_PersistentCalls:
@@ -742,7 +846,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 651defcfa3c26d04094a96ce63223e23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -795,6 +899,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 968087930461881673, guid: a02162f430019ae47809236b491547ff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f33506e4a29caf40a4acc6a3074181c, type: 2}
+    - target: {fileID: 1333384789637561150, guid: a02162f430019ae47809236b491547ff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d3d9e21deddc104a824fcefa4c163b2, type: 2}
+    - target: {fileID: 1719263354313958189, guid: a02162f430019ae47809236b491547ff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f33506e4a29caf40a4acc6a3074181c, type: 2}
     - target: {fileID: 2389416075176733635, guid: a02162f430019ae47809236b491547ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -883,7 +1002,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3054348667310059897, guid: a02162f430019ae47809236b491547ff,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 415802618}
   m_SourcePrefab: {fileID: 100100000, guid: a02162f430019ae47809236b491547ff, type: 3}
 --- !u!1 &1652004025
 GameObject:
@@ -1095,6 +1218,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1810932432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5330327730244353804, guid: b5baa654ceb7ca24b91aa039e8da6e68,
+    type: 3}
+  m_PrefabInstance: {fileID: 1367775673907375279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1810932436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810932432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d4fd1485a1e9a41beea794c0046a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: e3ac7a24c0720ac4ab40669b47dd60d8, type: 2}
 --- !u!1 &1888003200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,9 +1409,10 @@ GameObject:
   - component: {fileID: 2062542991}
   - component: {fileID: 2062542990}
   - component: {fileID: 2062542989}
+  - component: {fileID: 2062542993}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1315,7 +1458,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: c5c964a92a086e745a28092f45461333, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1360,6 +1503,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2062542993
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062542988}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!1 &2092981543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,7 +1623,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1596,8 +1766,12 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    - target: {fileID: 8241970638445222465, guid: 65bf7bfb4049b8f43baf405f42509f9f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0922f86ac55015940a469982fcf30275, type: 2}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1665,10 +1839,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagicPotion
       objectReference: {fileID: 0}
+    - target: {fileID: 6268757186427610974, guid: b5baa654ceb7ca24b91aa039e8da6e68,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 42ffe73d8d6d517499398e7ca51cadc4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5330327730244353804, guid: b5baa654ceb7ca24b91aa039e8da6e68,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1810932436}
   m_SourcePrefab: {fileID: 100100000, guid: b5baa654ceb7ca24b91aa039e8da6e68, type: 3}
 --- !u!1001 &4698612130758148547
 PrefabInstance:
@@ -1736,7 +1919,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8342328696924765711, guid: 562715b30f823704890c44eaa9fc6d2a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 209967566}
   m_SourcePrefab: {fileID: 100100000, guid: 562715b30f823704890c44eaa9fc6d2a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

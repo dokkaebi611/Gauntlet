@@ -12,8 +12,7 @@ TagManager:
   - Treasure
   - Door
   - MagicPotion
-  - EnemyLevel_1
-  - EnemyLevel_2
+  - Enemy
   layers:
   - Default
   - TransparentFX
