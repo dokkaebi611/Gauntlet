@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Elf : PlayerController
 {
-    public void Start()
+    protected override void Start()
     {
+        base.Start();
         speed *= 2f;
     }
 }

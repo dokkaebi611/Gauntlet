@@ -21,12 +21,10 @@ public class Enemy : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
-        // 플레이어 쪽으로 이동
         Vector3 direction = (player.position - transform.position).normalized;
         enemyRigidbody.MovePosition(transform.position + direction * speed * Time.deltaTime);
     }
 
-    // 피격 처리
     public void TakeDamage(int damage)
     {
         health -= damage;
