@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Transform player; 
+    public float speed = 5.0f;
+    private Rigidbody enemyRigidbody;
+
     void Start()
     {
-        
+        enemyRigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Vector3 positionDifference = player.position - transform.position;
+        positionDifference = positionDifference.normalized;
+
+        enemyRigidbody.MovePosition(transform.position + positionDifference * speed * Time.deltaTime);
     }
 }

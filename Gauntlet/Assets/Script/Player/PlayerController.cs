@@ -210,5 +210,21 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("You need a key to open this door.");
             }
         }
+
+        // Check if the collision object has an Enemy tag
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Define damage from the enemy
+            int damageFromEnemy = 5;
+
+            health -= damageFromEnemy;
+            Debug.Log("Player hit by enemy! Remaining health: " + health);
+
+            if (health <= 0)
+            {
+                Die();
+                Debug.Log("Player has died.");
+            }
+        }
     }
 }

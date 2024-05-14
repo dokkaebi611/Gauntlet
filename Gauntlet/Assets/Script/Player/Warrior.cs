@@ -4,13 +4,39 @@ using UnityEngine;
 
 public class Warrior : PlayerController
 {
-    protected override void Start()
+    public int extraDamage = 10; 
+    public int enemiesThreshold = 5;
+    public bool isDamageBoosted = false; 
+
+    protected override void Update()
     {
-        base.Start();
-        // Warrior-specific initialization
-        speed = 5f; // Adjust as needed
-        // Additional warrior-specific properties
+        base.Update();
+        CheckEnemiesAndBoostDamage();
     }
 
-    // Add warrior-specific methods and properties if needed
+    void CheckEnemiesAndBoostDamage()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5.0f);
+        int enemyCount = 0;
+
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Enemy"))
+                enemyCount++;
+        }
+
+        if (enemyCount >= enemiesThreshold)
+        {
+            if (!isDamageBoosted)
+            {
+                Debug.Log("Increased damage mode activated!");
+                isDamageBoosted = true;
+            }
+        }
+        else if (isDamageBoosted)
+        {
+            Debug.Log("Normal damage mode restored.");
+            isDamageBoosted = false;
+        }
+    }
 }

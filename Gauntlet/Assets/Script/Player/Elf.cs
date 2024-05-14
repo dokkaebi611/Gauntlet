@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Elf : MonoBehaviour
+public class Elf : PlayerController
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        speed *= 2f;
     }
 }
