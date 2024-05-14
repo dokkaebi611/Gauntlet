@@ -16,8 +16,9 @@ public class PlayerController : MonoBehaviour
     public int healthDecreaseInterval = 1; // 1 second
     public int score = 0; // Player's score
     public int magicPotionCount = 0;
-
+    
     private Vector2 move;
+    private float rotationSpeed = 5f;
     private float nextFireTime = 0f;
     private float nextHealthDecreaseTime = 0f;
 
@@ -100,15 +101,14 @@ public class PlayerController : MonoBehaviour
 
     protected virtual void movePlayer()
     {
-        // Adjust movement to the x and z axes
         Vector3 movement = new Vector3(move.x, 0, move.y);
-
-        if (movement != Vector3.zero) // Only rotate if there is movement
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 1.5f * Time.deltaTime);
-        }
-
         transform.Translate(movement * speed * Time.deltaTime, Space.World);
+
+        if (move != Vector2.zero) 
+        {
+            float targetAngle = Mathf.Atan2(move.x, move.y) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+        }
     }
 
     private void FireBullet()

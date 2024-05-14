@@ -2,57 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab; // 에네미 프리팹
-    public float spawnInterval = 0.4f; // 스폰 간격
+    public int health = 30;
+    private bool isDestroyed = false;
+    public GameObject enemyPrefab;
+    public float spawnInterval = 1f;
 
-    private void Start()
+    private Renderer[] renderers;
+    private Color originalColor;
+    private int lastHealthCheckpoint;
+
+    void Start()
     {
-        StartCoroutine(SpawnEnemy());
+        renderers = GetComponentsInChildren<Renderer>();
+        originalColor = renderers[0].material.color;
+        lastHealthCheckpoint = health;
+        StartCoroutine(SpawnEnemyRoutine());
     }
 
-    IEnumerator SpawnEnemy()
+    IEnumerator SpawnEnemyRoutine()
     {
-        while (true)
+        while (!isDestroyed)
         {
-            // 에네미 생성
-            GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-
-            // 에네미가 태그 "Bullet"과 충돌할 때를 감지하는 스크립트 추가
-            EnemyCollisionHandler collisionHandler = enemy.AddComponent<EnemyCollisionHandler>();
-            collisionHandler.Initialize(this);
-
+            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-}
 
-public class EnemyCollisionHandler : MonoBehaviour
-{
-    private EnemySpawner spawner;
-
-    public void Initialize(EnemySpawner enemySpawner)
+    public void TakeDamage(int damage)
     {
-        spawner = enemySpawner;
+        health -= damage;
+
+        if (health <= 0 && !isDestroyed)
+        {
+            Destroy(gameObject);
+            isDestroyed = true;
+        }
+        else if (health / 10 < lastHealthCheckpoint / 10) 
+        {
+            lastHealthCheckpoint = health;
+            ChangeRandomColor();
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void ChangeRandomColor()
     {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            // 충돌한 게임 오브젝트의 색 변경
-            Renderer renderer = collision.gameObject.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.material.color = Color.red; // 원하는 색상으로 변경 가능
-            }
+        Color randomColor = new Color(Random.value, Random.value, Random.value);
+        SetColor(randomColor);
+    }
 
-            // 충돌 횟수 카운트
-            if (spawner != null)
-            {
-                spawner.OnEnemyCollision();
-            }
+    private void SetColor(Color color)
+    {
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material.color = color;
         }
     }
 }
