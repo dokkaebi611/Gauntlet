@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
         MoveTowardsPlayer();
     }
 
-    void MoveTowardsPlayer()
+    protected void MoveTowardsPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
         enemyRigidbody.MovePosition(transform.position + direction * speed * Time.deltaTime);
@@ -28,7 +28,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-
         if (health <= 0)
         {
             Die();

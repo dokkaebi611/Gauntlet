@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     public int magicPotionCount = 0;
     
     private Vector2 move;
-    private float rotationSpeed = 5f;
     private float nextFireTime = 0f;
     private float nextHealthDecreaseTime = 0f;
 
@@ -211,14 +210,27 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Check if the collision object has an Enemy tag
-        if (collision.gameObject.CompareTag("Enemy"))
+        int damageFromEnemy = 0;
+        switch (collision.gameObject.tag)
         {
-            // Define damage from the enemy
-            int damageFromEnemy = 5;
+            case "Enemy":
+                damageFromEnemy = 10;
+                break;
+            case "Enemy2":
+                damageFromEnemy = 20;
+                break;
+            case "Enemy3":
+                damageFromEnemy = 50;
+                break;
+            case "Boss":
+                damageFromEnemy = 100;
+                break;
+        }
 
+        if (damageFromEnemy > 0)
+        {
             health -= damageFromEnemy;
-            Debug.Log("Player hit by enemy! Remaining health: " + health);
+            Debug.Log($"Player hit by {collision.gameObject.tag}! Remaining health: {health}");
 
             if (health <= 0)
             {

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Warrior : PlayerController
 {
-    public int extraDamage = 10; 
+    public int extraDamage = 10;
     public int enemiesThreshold = 5;
-    public bool isDamageBoosted = false; 
+    public bool isDamageBoosted = false;
 
     protected override void Update()
     {
