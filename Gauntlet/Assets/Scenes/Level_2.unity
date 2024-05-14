@@ -2182,8 +2182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
-  enemyPrefab: {fileID: 0}
-  spawnInterval: 1
+  enemyPrefab: {fileID: 4768503774162390014, guid: ea9ccff7c6b16054498fec0be08f6b4a,
+    type: 3}
+  spawnInterval: 4
 --- !u!65 &571432033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2644,8 +2645,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
-  enemyPrefab: {fileID: 0}
-  spawnInterval: 1
+  enemyPrefab: {fileID: 4768503774162390014, guid: ea9ccff7c6b16054498fec0be08f6b4a,
+    type: 3}
+  spawnInterval: 4
 --- !u!65 &678207423
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3616,8 +3618,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
-  enemyPrefab: {fileID: 0}
-  spawnInterval: 1
+  enemyPrefab: {fileID: 4768503774162390014, guid: ea9ccff7c6b16054498fec0be08f6b4a,
+    type: 3}
+  spawnInterval: 4
 --- !u!65 &1642829903
 BoxCollider:
   m_ObjectHideFlags: 0
