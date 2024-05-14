@@ -179,9 +179,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3852117648507566282, guid: a0df04c88422f2b45bdcc2c85ecb97be, type: 3}
-  speed: 5
+  speed: 10
   health: 10
   bulletPrefab: {fileID: 6717107848133402928, guid: c1c3b99c1366b964d9097777a332076b,
     type: 3}
   bulletSpawnPoint: {fileID: 8620605829347041702}
-  shootingInterval: 4
+  shootingInterval: 5

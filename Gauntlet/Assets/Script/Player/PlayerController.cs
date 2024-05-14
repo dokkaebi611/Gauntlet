@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public int healthDecreaseInterval = 1; // 1 second
     public int score = 0; // Player's score
     public int magicPotionCount = 0;
-    
+
     private Vector2 move;
     private float nextFireTime = 0f;
     private float nextHealthDecreaseTime = 0f;
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Magic Potion used. Remaining potions: " + magicPotionCount);
         }
     }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(move.x, 0, move.y);
         transform.Translate(movement * speed * Time.deltaTime, Space.World);
 
-        if (move != Vector2.zero) 
+        if (move != Vector2.zero)
         {
             float targetAngle = Mathf.Atan2(move.x, move.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
@@ -135,6 +136,7 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died");
+        // Add your player death logic here (e.g., reload level, show game over screen)
     }
 
     private void OnTriggerEnter(Collider other)
@@ -162,6 +164,12 @@ public class PlayerController : MonoBehaviour
 
             Destroy(other.gameObject);
         }
+        if (other.CompareTag("EnemyBullet"))
+        {
+            TakeDamage(other.GetComponent<EnemyBullet>().damage, "EnemyBullet");
+            Destroy(other.gameObject);
+            return;
+        }
     }
 
     private void UseMagicPotion()
@@ -173,10 +181,15 @@ public class PlayerController : MonoBehaviour
             float rangeY = 2f;
             float rangeZ = 40f;
 
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            // Find all enemies with tags "Enemy", "Enemy2", and "Enemy3"
+            List<GameObject> allEnemies = new List<GameObject>();
+            allEnemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+            allEnemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy2"));
+            allEnemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy3"));
+
             Vector3 playerPosition = transform.position;
 
-            foreach (GameObject enemy in enemies)
+            foreach (GameObject enemy in allEnemies)
             {
                 Vector3 enemyPosition = enemy.transform.position;
                 float distanceX = Mathf.Abs(enemyPosition.x - playerPosition.x);
@@ -210,6 +223,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // Check for collision with enemies or enemy bullets and take damage accordingly
         int damageFromEnemy = 0;
         switch (collision.gameObject.tag)
         {
@@ -229,14 +243,18 @@ public class PlayerController : MonoBehaviour
 
         if (damageFromEnemy > 0)
         {
-            health -= damageFromEnemy;
-            Debug.Log($"Player hit by {collision.gameObject.tag}! Remaining health: {health}");
+            TakeDamage(damageFromEnemy, collision.gameObject.tag);
+        }
+    }
 
-            if (health <= 0)
-            {
-                Die();
-                Debug.Log("Player has died.");
-            }
+    public void TakeDamage(int damage, string sourceTag)
+    {
+        health -= damage;
+        Debug.Log($"Player hit by {sourceTag}! Remaining health: {health}");
+
+        if (health <= 0)
+        {
+            Die();
         }
     }
 }
