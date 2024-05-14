@@ -184,4 +184,4 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6717107848133402928, guid: c1c3b99c1366b964d9097777a332076b,
     type: 3}
   bulletSpawnPoint: {fileID: 8620605829347041702}
-  shootingInterval: 2
+  shootingInterval: 4
