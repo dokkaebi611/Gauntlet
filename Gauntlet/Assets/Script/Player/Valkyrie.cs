@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Valkyrie : PlayerController
 {
+    public static GameManager Instance { get; private set; }
+
     public float damageReduction = 0.75f;
 
     private void OnCollisionEnter(Collision collision)
@@ -11,8 +13,8 @@ public class Valkyrie : PlayerController
         if (collision.gameObject.CompareTag("Enemy"))
         {
             int damageFromEnemy = (int)(20 * damageReduction);
-            health -= damageFromEnemy;
-            Debug.Log("Reduced damage taken! Remaining health: " + health);
+            GameManager.Instance.playerHealth -= damageFromEnemy;
+            Debug.Log("Reduced damage taken! Remaining health: " + GameManager.Instance.playerHealth);
         }
     }
 }

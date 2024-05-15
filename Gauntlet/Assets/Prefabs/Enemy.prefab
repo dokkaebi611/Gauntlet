@@ -147,9 +147,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  speed: 10
+  - {fileID: 739570144360944343, guid: 7ae023373e1c9f94690791a3e1588fc7, type: 3}
+  - {fileID: 5733064019046622200, guid: 32c393fd80d6eaa4f851d6b6dc98cf47, type: 3}
+  - {fileID: 2911839855414653972, guid: fe6e1447f5be3a647b723bf8285e4ee0, type: 3}
+  - {fileID: 6719044864064367861, guid: c8641e0f9fba15047afa982b46903260, type: 3}
   health: 10
+  attack: 0
+  speed: 20
+  enemyType: 
+  rangedAttack: {fileID: 0}
+  rangedSpawn: {fileID: 0}
+  rangedSpeed: 0
+  OnDestroyed:
+    m_PersistentCalls:
+      m_Calls: []

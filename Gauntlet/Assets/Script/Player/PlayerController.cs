@@ -85,7 +85,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Magic Potion used. Remaining potions: " + magicPotionCount);
         }
     }
-
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -136,7 +135,6 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died");
-        // Add your player death logic here (e.g., reload level, show game over screen)
     }
 
     private void OnTriggerEnter(Collider other)
@@ -164,12 +162,6 @@ public class PlayerController : MonoBehaviour
 
             Destroy(other.gameObject);
         }
-        if (other.CompareTag("EnemyBullet"))
-        {
-            TakeDamage(other.GetComponent<EnemyBullet>().damage, "EnemyBullet");
-            Destroy(other.gameObject);
-            return;
-        }
     }
 
     private void UseMagicPotion()
@@ -181,15 +173,10 @@ public class PlayerController : MonoBehaviour
             float rangeY = 2f;
             float rangeZ = 40f;
 
-            // Find all enemies with tags "Enemy", "Enemy2", and "Enemy3"
-            List<GameObject> allEnemies = new List<GameObject>();
-            allEnemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-            allEnemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy2"));
-            allEnemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy3"));
-
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             Vector3 playerPosition = transform.position;
 
-            foreach (GameObject enemy in allEnemies)
+            foreach (GameObject enemy in enemies)
             {
                 Vector3 enemyPosition = enemy.transform.position;
                 float distanceX = Mathf.Abs(enemyPosition.x - playerPosition.x);
@@ -223,38 +210,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Check for collision with enemies or enemy bullets and take damage accordingly
-        int damageFromEnemy = 0;
-        switch (collision.gameObject.tag)
+        // Check if the collision object has an Enemy tag
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            case "Enemy":
-                damageFromEnemy = 10;
-                break;
-            case "Enemy2":
-                damageFromEnemy = 20;
-                break;
-            case "Enemy3":
-                damageFromEnemy = 50;
-                break;
-            case "Boss":
-                damageFromEnemy = 100;
-                break;
-        }
+            // Define damage from the enemy
+            int damageFromEnemy = 20;
 
-        if (damageFromEnemy > 0)
-        {
-            TakeDamage(damageFromEnemy, collision.gameObject.tag);
-        }
-    }
+            health -= damageFromEnemy;
+            Debug.Log("Player hit by enemy! Remaining health: " + health);
 
-    public void TakeDamage(int damage, string sourceTag)
-    {
-        health -= damage;
-        Debug.Log($"Player hit by {sourceTag}! Remaining health: {health}");
-
-        if (health <= 0)
-        {
-            Die();
+            if (health <= 0)
+            {
+                Die();
+                Debug.Log("Player has died.");
+            }
         }
     }
 }
